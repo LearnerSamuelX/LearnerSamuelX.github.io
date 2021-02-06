@@ -95,6 +95,10 @@ image{
     background:rgb(58, 58, 58);
 }
 
+#navi-bar-left a:hover{
+    cursor: pointer;
+}
+
 #navi-bar-right a:hover{
     background-color:grey;
 }
