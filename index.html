@@ -20,7 +20,7 @@
         <section>
             <div id='navi-bar'>
                 <div id='navi-bar-left'>
-                    <a href="#heading-container">Sam's Portfolio</a>
+                    <a onclick=jumpBack(event) id='home_button'>Sam's Portfolio</a>
                 </div>
                     <div id='navi-bar-right'>
                         <a href="files/Resume.pdf">Resume</a>
@@ -93,16 +93,16 @@
     <div id='canavas-container'>
         <div id='canavas'>
             <div id= 'icon-1'>
-                <img id='process'src='imgs/i_Chemistry.png' style="float:left;">
+                <img id='process'alt='facility_icon'src='imgs/i_Chemistry.png' style="float:left;">
                 <p>Chemical Reactor Design and Pipeline Layout<br>Control Loop Design<br>Heat Transfer Calculation and Utility Usage Estimation</p>
             </div>
 
             <div id= 'icon-2'>
-                <img id='web-page'src='imgs/i_Web Page Icon.png' style = 'float:right;'>
+                <img id='web-page'alt='web_icon'src='imgs/i_Web Page Icon.png' style = 'float:right;'>
                 <p>Web Applications Building for Small and Growing Businesses<br>Services Offering for NGO and Charity Groups<br>Good Quality Design with Affordable Cost</p>
             </div>
             <div id = 'icon-3'>
-                <img id='data-chart' src='imgs/i_Data.png'style="float:left;">
+                <img id='data-chart' alt='chart_icon'src='imgs/i_Data.png'style="float:left;">
                 <p>Data Handling Using Python, MATLAB<br>Data Visualization<br>Data Analysis Skill Training and Practices</p>
             </div>
         </div>
@@ -118,24 +118,24 @@
     <div id='shade-4'></div>
     <div id='founders-bio-container'>
         <div id='bio-pic-area'>
-            <img id= 'bio-photo' src='imgs/Portrait.jpg'>
+            <img id= 'bio-photo' alt='Me' src='imgs/Portrait.jpg'>
         </div>
         <div id='bio-text-area'>
             <div id= 'about-me'><p>ABOUT ME</p></div>
             <div id='bio-grid'>
                 <div class='bio-grid-row'>
                     <div id='degree'>
-                        <img id='degree-icon' src='imgs/Degree-icon.png'>
+                        <img id='degree-icon' alt='degree_paper'src='imgs/Degree-icon.png'>
                         <p id='degree-icon-text'>B.Eng in Chemical Engineering<br>From McMaster University<br>Specialized in Process Control</p>
                     </div>
                     <div id='interest'>
-                        <img id='interest-icon' src='imgs/interest.png'>
+                        <img id='interest-icon' alt='interest_icon' src='imgs/interest.png'>
                         <p id='interest-icon-text'>IoT Configuration<br>Software Development<br>Web Design</p>
                     </div>
                 </div>
                 <div class='bio-grid-row'>
                     <div id ='work'>
-                        <img id='work-icon' src='imgs/Engineer-icon.png'>
+                        <img id='work-icon' alt='tool_icon' src='imgs/Engineer-icon.png'>
                         <p id='work-icon-text'>Entry Level Manufacturing Engineer<br>Water and Wastewater EIT<br>Skills in Plant Simulation</p>
                     </div>
                 </div>
@@ -152,20 +152,19 @@
        <div id='folder-container'>
          <div class='projects-row'>
             <div class='project-frame'>
-                <img src='imgs/FancyCalculator.png'>
-                    <div class='pic-cover'></div>
+                <img alt='fancyCalc_icon' src='imgs/FancyCalculator.png'>
                 <p>Fancy Calculator</p>
                 <a href="https://learnersamuelx.github.io/fancyCalc/" target="_blank">Demo</a>
             </div>
             <div class='project-frame'>
-                <img id='weatherApp'src='imgs/Radar.gif'>
+                <img id='weatherApp' alt='irrigation_icon'src='imgs/Radar.gif'>
                 <p>Irrigation Panel</p>
                 <a href="https://github.com/LearnerSamuelX/irrigationpanel" target="_blank">GitHub</a>
             </div>
          </div>
          <div class='projects-row'>
             <div class='project-frame'>
-                <img id="drawingApp"src='imgs/bigo.png'>
+                <img id="drawingApp" alt='bigo_visualizer'src='imgs/bigo.png'>
                 <p>Big-O Visualizer</p>
                 <a href="https://learnersamuelx.github.io/bigosim/" target="_blank">Demo</a>
             </div>
@@ -254,6 +253,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js" integrity="sha256-lPE3wjN2a7ABWHbGz7+MKBJaykyzqCbU96BJWjio86U=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TimelineMax.min.js" integrity="sha256-fIkQKQryItPqpaWZbtwG25Jp2p5ujqo/NwJrfqAB+Qk=" crossorigin="anonymous"></script>
 <script>
+    const home_button = document.getElementById('home_button');
+    function jumpBack(event) {
+        
+        //make it smooth
+        window.scrollTo(0,0);
+    }
+
+
+
 //Title Page Animation Code    
     const titlePage = document.querySelector('#heading-container');
     const line_2 = document.querySelector('#line-2');
@@ -271,7 +279,6 @@
 
     function dayNightSwitch(){
         let color = document.getElementById("heading-container").style.backgroundColor;
-        console.log(color)
         if (color==='rgb(67, 59, 153)'){
             document.getElementById("heading-container").style.backgroundColor='rgba(240, 239, 241, 0.05)'
             document.getElementById("line-1").style.color='black'
@@ -354,34 +361,6 @@
                 document.documentElement.style.setProperty('--game-background-color', string_hex_code);
             }
     }
-
-
-//Contact form validation
-//form submission with object creation
-var formInput;
-var firstName;
-var lastName ;
-var emailadd;
-var text_info;
-
-var filled_form = document.getElementById('form');
-filled_form.addEventListener('submit',(e)=>{
-    e.preventDefault();
-    formInput = new FormData(filled_form);
-    emailadd = formInput.get('_replyto');
-    text_info = formInput.get('message');
-
-    if(emailadd.length===0||text_info.length===0){
-        alert("Fill in the form completely ;)")
-    }else{
-    var contact_info = {
-        emailadd,
-        text_info
-    }
-    console.log(contact_info);
-   }
-})
-
 //form input refresh after click
 </script>
 </body>
